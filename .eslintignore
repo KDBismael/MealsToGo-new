@@ -1,0 +1,4 @@
+.prettierignore
+.gitignore
+app.json
+babel.config.js
