@@ -1,6 +1,5 @@
-import { Text, StyleSheet } from "react-native";
-import { Card, Text as PaperText } from "react-native-paper";
-import styled from "styled-components";
+import { Card } from "react-native-paper";
+import styled from "styled-components/native";
 
 interface Props {
   restaurant: {
@@ -14,35 +13,29 @@ interface Props {
   };
 }
 
-const Title = styled.Text``;
+const Title = styled.Text`
+  padding: 10px;
+`;
+
+const RestaurantCard = styled(Card)`
+  background-color: white;
+`;
+
+const RestaurantCardCover = styled(Card.Cover)`
+  padding: 15px;
+  background-color: white;
+`;
 
 export const RestaurantInfoCard = ({ restaurant }: Props) => {
   const { name, photos } = restaurant;
   return (
     <>
-      <Card elevation={5} style={styles.card}>
-        <Card.Cover
-          style={styles.cover}
-          key={name}
-          source={{ uri: photos[0] }}
-        />
+      <RestaurantCard elevation={5}>
+        <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
         <Card.Content>
-          <PaperText style={styles.title} variant="bodyMedium">
-            <Text>{name}</Text>
-          </PaperText>
+          <Title>{name}</Title>
         </Card.Content>
-      </Card>
+      </RestaurantCard>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  card: { backgroundColor: "white" },
-  cover: {
-    padding: 15,
-    backgroundColor: "white",
-  },
-  title: {
-    padding: 10,
-  },
-});
