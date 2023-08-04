@@ -1,14 +1,11 @@
 import { useState } from "react";
-import { StatusBar, FlatList } from "react-native";
+import { FlatList } from "react-native";
 import { Searchbar } from "react-native-paper";
-import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import styled from "styled-components/native";
-import { Spacer } from "../../../components/spacer/spacer";
 
-const Container = styled.SafeAreaView`
-  flex: 1;
-  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`}
-`;
+import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
+import { Spacer } from "../../../components/spacer/spacer";
+import { SafeArea } from "../../../components/utility/safe-area.components";
 
 const SearchContainer = styled.View`
   background-color: ${(props) => props.theme.colors.ui.success};
@@ -38,7 +35,7 @@ export const RestaurantsScreen = () => {
   const onChangeSearch = (query: string) => setSearchQuery(query);
   return (
     <>
-      <Container>
+      <SafeArea>
         <SearchContainer>
           <Searchbar
             onChangeText={(e) => onChangeSearch(e)}
@@ -65,7 +62,7 @@ export const RestaurantsScreen = () => {
           )}
           keyExtractor={(Item) => Item.name}
         />
-      </Container>
+      </SafeArea>
     </>
   );
 };
