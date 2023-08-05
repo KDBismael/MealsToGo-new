@@ -6,6 +6,7 @@ import styled from "styled-components/native";
 import { RestaurantInfoCard } from "../components/restaurant-info-card.component";
 import { Spacer } from "../../../components/spacer/spacer";
 import { SafeArea } from "../../../components/utility/safe-area.components";
+import { useResraurantContext } from "../../../services/restaurants/restaurants.context";
 
 const SearchContainer = styled.View`
   background-color: ${(props) => props.theme.colors.ui.success};
@@ -33,6 +34,8 @@ const restaurantMock = {
 export const RestaurantsScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const onChangeSearch = (query: string) => setSearchQuery(query);
+  const restaurants = useResraurantContext();
+  console.log(restaurants);
   return (
     <>
       <SafeArea>
@@ -44,16 +47,7 @@ export const RestaurantsScreen = () => {
           />
         </SearchContainer>
         <RestaurantList
-          data={[
-            { name: "a" },
-            { name: "b" },
-            { name: "c" },
-            { name: "d" },
-            { name: "e" },
-            { name: "f" },
-            { name: "g" },
-            { name: "h" },
-          ]}
+          data={restaurants}
           renderItem={() => (
             <>
               <RestaurantInfoCard restaurant={restaurantMock} />
