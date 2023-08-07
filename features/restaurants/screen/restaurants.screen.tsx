@@ -9,11 +9,12 @@ import { SafeArea } from "../../../components/utility/safe-area.components";
 import { useResraurantContext } from "../../../services/restaurants/restaurants.context";
 
 const SearchContainer = styled.View`
-  background-color: ${(props) => props.theme.colors.ui.success};
   padding: ${(props) => props.theme.space[3]};
+  padding-top: 0px;
 `;
+// background-color: ${(props) => props.theme.colors.ui.success};
 
-const RestaurantList = styled(FlatList<{ name: string }>).attrs({
+const RestaurantList = styled(FlatList<any>).attrs({
   contentContainerStyle: {
     padding: 16,
   },
@@ -34,8 +35,8 @@ const restaurantMock = {
 export const RestaurantsScreen = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const onChangeSearch = (query: string) => setSearchQuery(query);
-  const restaurants = useResraurantContext();
-  console.log(restaurants);
+  const { restaurants, isLoading, error } = useResraurantContext();
+  // console.log(restaurants);
   return (
     <>
       <SafeArea>
@@ -48,12 +49,14 @@ export const RestaurantsScreen = () => {
         </SearchContainer>
         <RestaurantList
           data={restaurants}
-          renderItem={() => (
-            <>
-              <RestaurantInfoCard restaurant={restaurantMock} />
-              <Spacer position="bottom" size="large" />
-            </>
-          )}
+          renderItem={(Item) => {
+            return (
+              <>
+                <RestaurantInfoCard restaurant={Item.item} />
+                <Spacer position="bottom" size="large" />
+              </>
+            );
+          }}
           keyExtractor={(Item) => Item.name}
         />
       </SafeArea>

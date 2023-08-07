@@ -18,6 +18,12 @@ interface Props {
   restaurant: {
     name: string;
     icon?: string;
+    // photos: {
+    //   height: number;
+    //   htmlAttributions: string[];
+    //   photoReference: string;
+    //   width: number;
+    // }[];
     photos: string[];
     address: string;
     isOpenNow: boolean;
@@ -37,6 +43,7 @@ export const RestaurantInfoCard = ({ restaurant }: Props) => {
     icon,
   } = restaurant;
   const ratingArray = Array.from(new Array(Math.floor(rating)));
+  console.log(restaurant);
   return (
     <>
       <RestaurantCard elevation={5}>
