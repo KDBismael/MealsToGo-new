@@ -15,7 +15,7 @@ export const restaurantsRequest = ({
 };
 
 export const restaurantsTransform = (result: any[]) => {
-  console.log(result);
+  // console.log(result);
   const mappedResult = result.map((x: any) => ({
     ...x,
     isOpenNow: x.opening_hours && x.opening_hours.open_now,
