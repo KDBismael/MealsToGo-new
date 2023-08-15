@@ -14,6 +14,7 @@ import { theme } from "./infrastructure/theme";
 import { RestaurantsScreen } from "./features/restaurants/screen";
 import { SafeArea } from "./components/utility/safe-area.components";
 import { RestaurantsProvider } from "./services/restaurants/restaurants.context";
+import { LocationProvider } from "./services/location/location.context";
 
 export default function App() {
   const [oswaldLoaded] = useLato({
@@ -70,15 +71,17 @@ export default function App() {
   return (
     <>
       <ThemeProvider theme={theme}>
-        <RestaurantsProvider>
-          <NavigationContainer>
-            <Tab.Navigator screenOptions={createScreenOptions}>
-              <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
-              <Tab.Screen name="Map" component={MapScreen} />
-              <Tab.Screen name="Settings" component={SettingsScreen} />
-            </Tab.Navigator>
-          </NavigationContainer>
-        </RestaurantsProvider>
+        <LocationProvider>
+          <RestaurantsProvider>
+            <NavigationContainer>
+              <Tab.Navigator screenOptions={createScreenOptions}>
+                <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
+                <Tab.Screen name="Map" component={MapScreen} />
+                <Tab.Screen name="Settings" component={SettingsScreen} />
+              </Tab.Navigator>
+            </NavigationContainer>
+          </RestaurantsProvider>
+        </LocationProvider>
         <ExpoStatusBar style="auto" />
       </ThemeProvider>
     </>
