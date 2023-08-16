@@ -4,9 +4,7 @@ import { mockImages, mocks } from "./mock";
 interface LocationType {
   location?: string;
 }
-export const restaurantsRequest = ({
-  location = "37.7749295,-122.4194155",
-}: LocationType) => {
+export const restaurantsRequest = ({ location }: LocationType) => {
   return new Promise((resolve, reject) => {
     const mock = mocks[location];
     if (!mock) reject("not found");

@@ -13,6 +13,6 @@ export const locationRequest = (searchTerm: string) => {
 export const locationTransform = (result: any) => {
   const formatedResult = camelize(result);
   const { geometry = {} } = formatedResult.results[0];
-  const { lat, long } = geometry.location;
-  return { lat, long };
+  const { lat, lng } = geometry.location;
+  return { lat, lng };
 };
