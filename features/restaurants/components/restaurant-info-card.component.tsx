@@ -29,6 +29,7 @@ interface Props {
     isOpenNow: boolean;
     rating: number;
     isClosedTemporarily?: boolean;
+    placeId: string;
   };
 }
 
@@ -41,6 +42,7 @@ export const RestaurantInfoCard = ({ restaurant }: Props) => {
     isOpenNow,
     isClosedTemporarily,
     icon,
+    placeId,
   } = restaurant;
   const ratingArray = Array.from(new Array(Math.floor(rating)));
   // console.log(restaurant);
@@ -52,8 +54,13 @@ export const RestaurantInfoCard = ({ restaurant }: Props) => {
           <Text variant="label">{name}</Text>
           <Wrapper>
             <Rating>
-              {ratingArray.map((rate, i) => (
-                <SvgXml key={i} xml={star} width={20} height={20} />
+              {ratingArray.map((_, i) => (
+                <SvgXml
+                  key={`star-${placeId}-${i}`}
+                  xml={star}
+                  width={20}
+                  height={20}
+                />
               ))}
             </Rating>
             <EndItem>

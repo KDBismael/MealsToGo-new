@@ -8,18 +8,24 @@ const SearchContainer = styled.View`
   padding-top: 0px;
 `;
 
+const SearchBar = styled(Searchbar)`
+  background-color: ${(props) => props.theme.colors?.bg?.primary};
+`;
+
 export const Search = () => {
-  const { location, keyword, search } = useLOcationContext();
+  const { keyword, search } = useLOcationContext();
   const [searchQuery, setSearchQuery] = useState(keyword);
   const onChangeSearch = (query: string) => setSearchQuery(query);
-  console.log(location);
+  // console.log(location);
   useEffect(() => {
     search(searchQuery);
   }, []);
 
   return (
     <SearchContainer>
-      <Searchbar
+      <SearchBar
+        mode="view"
+        showDivider={false}
         value={searchQuery}
         placeholder="Search for a location"
         onSubmitEditing={() => {

@@ -21,6 +21,7 @@ export const restaurantsTransform = (result: any[]) => {
     photos: x.photos.map(
       () => mockImages[Math.ceil(Math.random() * (mockImages.length - 1))],
     ),
+    address: x.vicinity,
   }));
   const newResult = camelize(mappedResult);
   return newResult;
